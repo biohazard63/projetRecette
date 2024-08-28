@@ -3,7 +3,7 @@ main{
     align-items: flex-start;
     flex: 1 0 0;
     align-self: stretch;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .imgContainer{
@@ -13,7 +13,19 @@ main{
     flex: 1 0 0;
     align-self: stretch;
 }
-
+.imgLogin,
+.imgRegister{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    margin: 10px;
+    
+    border-radius: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .formWrapperLogin,
 .formWrapperRegister{
     display: flex;
