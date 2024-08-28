@@ -20,7 +20,7 @@ function Register() {
     return (
         <main>
             <div className="imgContainer">
-                {/* Image content */}
+                <img src="./../../public/images/1 (16).jpg" alt="placeholder" className="imgRegister"/>
             </div>
             <div className="formWrapperRegister">
                 <div className="formCard">
