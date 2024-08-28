@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../auth.css'
+import '../auth.css';
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ function Register() {
             </div>
             <div className="formWrapperRegister">
                 <div className="formCard">
-                    <h2>Fomulaire de création de compte</h2>
+                    <h2>Fomulaire d'Inscription</h2>
                     <form onSubmit={handleRegisterSubmit}>
                         <div className="registerField">
                             <label>Email:</label>
@@ -55,6 +55,7 @@ function Register() {
                             />
                         </div>
                         <button type="submit">Connexion</button>
+                        <p>Vous avez déjà un compte ? <a href="/login">connexion</a></p>
                     </form>
                 </div>
             </div>
