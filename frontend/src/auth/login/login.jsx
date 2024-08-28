@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './login.css'
+import '../auth.css'
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleLoginSubmit = (event) => {
     event.preventDefault();
     // Logique de soumission du formulaire
     console.log('Email:', email);
@@ -16,10 +16,10 @@ function Login() {
       <div class="imgContainer">
       
       </div>
-      <div class="formWrapper">
+      <div class="formWrapperLogin">
           <div class="formCard">
           <h2>Fomulaire de connexion</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleLoginSubmit}>
               <div class="loginField">
                 <label>Email:</label>
                 <input

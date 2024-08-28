@@ -14,7 +14,8 @@ main{
     align-self: stretch;
 }
 
-.formWrapper{
+.formWrapperLogin,
+.formWrapperRegister{
     display: flex;
     padding: 10px;
     flex-direction: column;
@@ -24,9 +25,13 @@ main{
     flex: 1 0 0;
     align-self: stretch;
 
+}
+.formWrapperLogin{
     background: #77BA99;
 }
-
+.formWrapperRegister{
+    background: #C56183;
+}    
 .formCard{
     max-height: fit-content;
     display: flex;
@@ -55,7 +60,8 @@ form{
     gap: 10px;
     align-self: stretch;
 }
-.loginField{
+.loginField,
+.registerField{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
