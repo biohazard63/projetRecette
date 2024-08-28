@@ -1,16 +1,16 @@
-
+// IngredientController.php
 <?php
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class IngredientController extends Controller
 {
     public function index()
     {
-        return Category::all();
+        return Ingredient::all();
     }
 
     public function store(Request $request)
@@ -19,33 +19,33 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $category = Category::create($request->all());
+        $ingredient = Ingredient::create($request->all());
 
-        return response()->json($category, 201);
+        return response()->json($ingredient, 201);
     }
 
     public function show($id)
     {
-        return Category::findOrFail($id);
+        return Ingredient::findOrFail($id);
     }
 
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($id);
+        $ingredient = Ingredient::findOrFail($id);
 
         $request->validate([
             'name' => 'sometimes|string|max:255',
         ]);
 
-        $category->update($request->all());
+        $ingredient->update($request->all());
 
-        return response()->json($category, 200);
+        return response()->json($ingredient, 200);
     }
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->delete();
 
         return response()->json(null, 204);
     }

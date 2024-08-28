@@ -12,7 +12,28 @@ class Recipe extends Model
     protected $fillable = [
         'title',
         'description',
-        'ingredients',
         'instructions',
+        'user_id',
+        'category_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function ingredients()
+    {
+        return $this->belongsToMany(Ingredient::class, 'recipe_ingredients')->withPivot('quantity');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(FavoriteRecipe::class);
+    }
 }

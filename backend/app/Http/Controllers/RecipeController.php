@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -17,8 +18,9 @@ class RecipeController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'ingredients' => 'required|string',
             'instructions' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $recipe = Recipe::create($request->all());
@@ -38,8 +40,9 @@ class RecipeController extends Controller
         $request->validate([
             'title' => 'sometimes|string|max:255',
             'description' => 'sometimes|string',
-            'ingredients' => 'sometimes|string',
             'instructions' => 'sometimes|string',
+            'user_id' => 'sometimes|exists:users,id',
+            'category_id' => 'sometimes|exists:categories,id',
         ]);
 
         $recipe->update($request->all());
