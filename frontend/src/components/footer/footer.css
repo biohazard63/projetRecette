@@ -1,0 +1,89 @@
+
+footer {
+    display: flex;
+    height: 313px;
+    padding: 0px 100px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+
+    background: #E27D60;
+}
+
+.footer_logo {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.footer_link {
+    display: flex;
+    padding: 20px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.footer_link h3  {
+    font-size: 36px;
+}
+
+.footer_logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.footer_navigation, .footer_account {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    align-self: stretch;
+    row-gap: 10px;
+}
+
+.footer_navigation ul, .footer_account ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.footer_navigation li, .footer_account li {
+    list-style: none;
+}
+
+.footer_navigation a, .footer_account a {
+    color: black;
+    font-family: Poppins;
+}
+
+
+nav a, .button_account a {
+    color: #FFF;
+    font-family: Pacifico;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+nav li {
+    display: inline;
+}
+
+.button_account {
+    display: flex;
+    width: 187px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

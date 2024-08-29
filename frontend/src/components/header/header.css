@@ -1,0 +1,38 @@
+
+header {
+    display: flex;
+    padding: 10px 50px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+
+    background: #E27D60;
+}
+
+nav a, .button_account a {
+    color: #FFF;
+    font-family: Pacifico;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+nav li {
+    display: inline;
+}
+
+.button_account {
+    display: flex;
+    width: 187px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
