@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
 }
 
 .App {
@@ -24,10 +24,12 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Pacifico';
+  font-family: 'Pacifico', sans-serif;
 }
 
-p {
-  font-family: 'Poppins';
+.error{
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
 

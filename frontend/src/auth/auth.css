@@ -1,0 +1,124 @@
+main{
+    display: flex;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+    height: 100vh;
+}
+
+.imgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+.imgLogin,
+.imgRegister{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    margin: 10px;
+    
+    border-radius: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.formWrapperLogin,
+.formWrapperRegister{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+
+}
+.formWrapperLogin{
+    background: #77BA99;
+}
+.formWrapperRegister{
+    background: #C56183;
+}    
+.formCard{
+    max-height: fit-content;
+    display: flex;
+    padding: 30px 48px;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    border-radius: 30px;
+    background: #F2E9E4;
+}
+
+h2{
+    color: #000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Pacifico;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+.loginField,
+.registerField{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+}
+input{
+    display: flex;
+    width: 294px;
+    height: 62px;
+    padding: 8px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+
+    border-radius: 20px;
+    background: #FFF;
+    border: none;
+}
+button{
+    display: flex;
+    padding: 0px 60px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    transition: all 0.2s;
+    border-radius: 50px;
+    background: #E27D60;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+
+    color: #FFF;
+    font-family: Pacifico;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+}
+button:hover{
+    background: #D36751;
+    box-shadow: 0px -4px 4px 0px rgba(255, 255, 255, 0.25);
+}
+button:active{
+    background: #C1533D;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
