@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,13 +9,90 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @OA\Schema(
+ *     schema="User",
+ *     description="User model",
+ *     title="User",
+ *     @OA\Xml(name="User")
+ * )
+ */
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
+
+    /**
+     * @OA\Property(
+     *     title="ID",
+     *     description="ID of the user",
+     *     format="int64",
+     *     example=1
+     * )
+     *
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @OA\Property(
+     *     title="Name",
+     *     description="Name of the user",
+     *     example="John Doe"
+     * )
+     *
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @OA\Property(
+     *     title="Email",
+     *     description="Email address of the user",
+     *     example="johndoe@example.com"
+     * )
+     *
+     * @var string
+     */
+    public $email;
+
+    /**
+     * @OA\Property(
+     *     title="Email Verified At",
+     *     description="Timestamp when the email was verified",
+     *     format="date-time",
+     *     example="2023-08-29T12:34:56Z"
+     * )
+     *
+     * @var \DateTime
+     */
+    public $email_verified_at;
+
+    /**
+     * @OA\Property(
+     *     title="Profile Photo URL",
+     *     description="URL of the user's profile photo",
+     *     example="https://example.com/photos/johndoe.jpg"
+     * )
+     *
+     * @var string
+     */
+    public $profile_photo_url;
+
+    /**
+     * Get the recipes for the user.
+     */
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+    }
+
+    /**
+     * Get the favorite recipes for the user.
+     */
+    public function favoriteRecipes()
+    {
+        return $this->hasMany(FavoriteRecipe::class);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -61,21 +137,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    /**
-     * Get the recipes for the user.
-     */
-    public function recipes()
-    {
-        return $this->hasMany(Recipe::class);
-    }
-
-    /**
-     * Get the favorite recipes for the user.
-     */
-    public function favoriteRecipes()
-    {
-        return $this->hasMany(FavoriteRecipe::class);
     }
 }
