@@ -1,11 +1,22 @@
 // src/components/account/account.jsx
 import React from 'react';
+import './recipes.css';
+import RecipesFilter from '../components/recipesFilter/recipesFilter';
 
 const Recipes = () => {
   return (
-    <div>
-      <h2>Login Page</h2>
-    </div>
+    <main>
+      <h2>Nos recettes</h2>
+        {/* Banner */}
+
+      <div className='filterSection'>
+        <RecipesFilter />
+      </div>
+      <div className='cardContainer'>
+        {/* Recipe cards */}
+      </div>
+
+    </main>
   );
 };
 

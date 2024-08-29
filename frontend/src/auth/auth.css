@@ -83,8 +83,8 @@ form{
 }
 input{
     display: flex;
-    width: 294px;
-    height: 62px;
+    width: 280px;
+    height: 60px;
     padding: 8px 16px;
     flex-direction: column;
     justify-content: center;
