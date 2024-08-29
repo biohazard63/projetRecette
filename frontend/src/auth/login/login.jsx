@@ -14,7 +14,7 @@ function Login() {
   return (
       <main>
       <div class="imgContainer">
-          <img src="./../../public/images/1 (4).jpg" alt="placeholder" className="imgRegister"/>
+          <img src="./images/1 (4).jpg" alt="placeholder" className="imgRegister"/>
       </div>
       <div class="formWrapperLogin">
           <div class="formCard">

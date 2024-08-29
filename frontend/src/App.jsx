@@ -1,9 +1,9 @@
 import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
-import { Routes, Route } from 'react-router-dom';
 
 import Home from './(home)/home';
 import Recipes from './recipes/recipes';
@@ -15,8 +15,10 @@ import Create from './create/create';
 import Legals from './legals/legals';
 import MyRecipe from './myrecipes/myrecipes';
 
-
 function App() {
+  const location = useLocation();
+  const showFooter = location.pathname !== '/login' && location.pathname !== '/register';
+
   return (
     <>
         <Header />
@@ -31,7 +33,7 @@ function App() {
           <Route path="/myrecipes" element={<MyRecipe />} />
           <Route path="/legals" element={<Legals />} />
         </Routes>
-        <Footer />
+        {showFooter && <Footer />}
     </>
   );
 }
