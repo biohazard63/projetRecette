@@ -41,8 +41,18 @@
     ```bash
     php artisan migrate
     ```
+   
+8. ajouter le fichier json dans le dossier database/seeders
+    ```bash
+    database/seeders/recettes.json
+    ```
 
-8. Serve the application:
+9. Seed the database with dummy data:
+    ```bash
+    php artisan db:seed
+    ```
+
+10. Serve the application:
     ```bash
     php artisan serve
     ```
