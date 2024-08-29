@@ -10,8 +10,26 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Pacifico', sans-serif;
+}
+
 .error{
   color: red;
   font-size: 12px;
   margin-top: 5px;
 }
+
