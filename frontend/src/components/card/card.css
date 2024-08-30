@@ -1,0 +1,17 @@
+.card {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 20px;
+    flex-shrink: 0; 
+
+}
+
+
