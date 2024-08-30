@@ -1,0 +1,12 @@
+.slider {
+    display: flex;
+    padding: 48px;
+    align-items: center;
+    gap: 48px;
+    align-self: stretch;
+    overflow: scroll;
+}
+
+.slider_container h2 {
+    text-align: center;
+}

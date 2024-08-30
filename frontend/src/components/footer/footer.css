@@ -1,11 +1,12 @@
 
 footer {
     display: flex;
-    height: 313px;
+    height: 100%;
     padding: 0px 100px;
     justify-content: center;
     align-items: center;
     align-self: stretch;
+    flex-wrap: wrap;
 
     background: #E27D60;
 }
@@ -23,6 +24,8 @@ footer {
     gap: 100px;
     flex: 1 0 0;
     align-self: stretch;
+    flex-wrap: wrap;
+
 }
 
 .footer_link h3  {
