@@ -3,6 +3,29 @@ import './recipes.css';
 import RecipesFilter from '../components/recipesFilter/recipesFilter';
 
 const Recipes = () => {
+
+  const [recipes, setRecipes] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/recipes');
+        const data = await response.json();
+        if (response.ok) {
+          setRecipes(data);
+        } else {
+          setError('Erreur lors de la récupération des recettes');
+        }
+      } catch (error) {
+        setError('Erreur lors de la récupération des recettes');
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
+
   const allCards = new Array(500).fill(null).map((_, index) => ({ id: index, title: `Recipe ${index + 1}` }));
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(9);
@@ -75,6 +98,18 @@ const Recipes = () => {
       </div>
       <div className='pagination'>
         {renderPageNumbers()}
+      </div>
+      <div>
+          {error && <p>{error}</p>}
+        <ul>
+          {recipes.map((recipe) => (
+            <li key={recipe.id}>
+              <h2>{recipe.title}</h2>
+              <p>{recipe.description}</p>
+              <p>{recipe.instructions}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

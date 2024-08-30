@@ -11,7 +11,8 @@ import Categories from './categories/categories';
 import Login from './auth/login/login';
 import Register from './auth/register/register';
 import Account from './account/account';
-import Create from './create/create';
+import CreateRecipe from './recipe/create/create';
+import UpdateRecipe from './recipe/update/update';
 import Legals from './legals/legals';
 import MyRecipe from './myrecipes/myrecipes';
 
@@ -29,7 +30,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/create" element={<Create />} />
+          <Route path="/create/recipe" element={<CreateRecipe />} />
+          <Route path="/update/recipe" element={<UpdateRecipe />} />
           <Route path="/myrecipes" element={<MyRecipe />} />
           <Route path="/legals" element={<Legals />} />
         </Routes>
