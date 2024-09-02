@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './card_recipe.css';
+import image_default from '../../../../public/images/recipes/pexels-klaus-nielsen-6287525.jpg';
 
 const CardRecipe = ({ image, title, icon_favorite, id }) => {
 
@@ -20,7 +21,13 @@ const CardRecipe = ({ image, title, icon_favorite, id }) => {
                     backgroundPosition: '50%', 
                     backgroundSize: 'cover', 
                     backgroundRepeat: 'no-repeat' 
-                } : null}
+                } : {
+                    backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${image_default})`, 
+                    backgroundColor: 'lightgray', 
+                    backgroundPosition: '50%', 
+                    backgroundSize: 'cover', 
+                    backgroundRepeat: 'no-repeat' 
+                }}
             >
                 <h3>{truncatedTitle}</h3>
             </Link>
