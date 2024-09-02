@@ -21,25 +21,17 @@ function Login() {
         password
       });
 
-      console.log('Response:', response);
-
       if (response.status === 200) {
-        console.log('Response data:', response.data);
-        if (response.data.user && response.data.user.id && response.data.user.name) {
-          const { id, name } = response.data.user;
-          sessionStorage.setItem('userId', id);
-          sessionStorage.setItem('userName', name);
-          setSuccess('Connexion réussie !');
-          navigate('/');
-        } else {
-          setError('User data is missing or incomplete in the response.');
-        }
+        const { id, name, role } = response.data.user;
+        sessionStorage.setItem('userId', id);
+        sessionStorage.setItem('userName', name);
+        sessionStorage.setItem('Role', role);
+        setSuccess('Connexion réussie !');
+        navigate('/');
       } else {
-        console.log('Error message:', response.data.message);
         setError(response.data.message || 'Une erreur est survenue.');
       }
     } catch (err) {
-      console.error('Error:', err);
       setError('Une erreur est survenue.');
     }
   };

@@ -24,7 +24,7 @@ function App() {
   const showFooter = location.pathname !== '/login' && location.pathname !== '/register';
 
   return (
-    <>
+      <>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -42,7 +42,7 @@ function App() {
           <Route path="/categories/:categoryId" element={<Category />} />
         </Routes>
         {showFooter && <Footer />}
-    </>
+      </>
   );
 }
 
