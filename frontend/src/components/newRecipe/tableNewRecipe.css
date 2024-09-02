@@ -1,0 +1,66 @@
+.tableNewRecipeContainer {
+    padding: 20px;
+}
+
+.recipeTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recipeTable th, .recipeTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.recipeTable th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.error {
+    color: red;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupContent {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.popupContent textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
