@@ -1,12 +1,9 @@
-// src/components/account/account.jsx
 import React, { useState } from 'react';
 
 const DeleteRecipe = () => {
   const [title, setTitle] = useState('');
-  // const [image , setImage] = useState('');
   const [description, setDescription] = useState('');
   const [instructions, setInstructions] = useState('');
-  // const [ingredients, setIngredients] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   
@@ -26,7 +23,6 @@ const DeleteRecipe = () => {
 
       if (response.ok) {
         setSuccess('Recette ajouter !');
-        // Vous pouvez rediriger l'utilisateur ou effectuer d'autres actions ici
       } else {
         const data = await response.json();
         setError(data.message || 'Une erreur est survenue.');

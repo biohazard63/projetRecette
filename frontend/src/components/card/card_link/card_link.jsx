@@ -13,9 +13,6 @@ const CardLink = ({ title_link, background_color, text_btn, to }) => {
       <div className='card card_link' style={{ backgroundColor: background_color}}>
         <div className='card_border'>
             <h3>{title_link}</h3>
-            {/* <a href={to}>
-              <h4>{text_btn}</h4> 
-            </a>           */}
             <button onClick={handleClick} className='link-button main_button'>
               <h4>{text_btn}</h4> 
             </button>   

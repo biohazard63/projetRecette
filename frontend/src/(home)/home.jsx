@@ -32,16 +32,6 @@ const Home = () => {
 
   let image = ImageBackgroundBanner;
 
-
-  // const cardRecipes = [
-  //   { title: "Pâtes à la Bolognaise", image: image_recette_1, icon_diet: icon_meat, icon_favorite: icon_favorite_full, background_color: "#E27D60", to: "/create" },
-  //   { title: "Pâtes à la Moutarde",image: image_recette_1, icon_diet: icon_vegetarian, icon_favorite: icon_favorite_empty, background_color: "#C56183", to: "/categories" },
-  //   { title: "Pâtes à la Bolognaise", image: image_recette_1, icon_diet: icon_meat, icon_favorite: icon_favorite_full, background_color: "#E27D60", to: "/create" },
-  //   { title: "Pâtes à la Moutarde",image: image_recette_1, icon_diet: icon_vegetarian, icon_favorite: icon_favorite_empty, background_color: "#C56183", to: "/categories" },
-  //   { title: "Pâtes à la Bolognaise", image: image_recette_1, icon_diet: icon_meat, icon_favorite: icon_favorite_full, background_color: "#E27D60", to: "/create" },
-  //   { title: "Pâtes à la Moutarde",image: image_recette_1, icon_diet: icon_vegetarian, icon_favorite: icon_favorite_empty, background_color: "#C56183", to: "/categories" },
-  // ];
-
   const cardCategories = [
     { title: "Entrées", image: image_recette_1, background_color: "#E27D60", to: "/categories" },
     { title: "Plats", image: image_recette_1,  background_color: "#C56183", to: "/categories" },
@@ -68,26 +58,6 @@ const Home = () => {
       { title_link: "Les Catégories", background_color: "#F6C90E", text_btn: "Voir plus", to: "/recipes" },
   ];
 
-
-  // useEffect(() => {
-  //   const fetchRecipes = async () => {
-  //     try {
-  //       const response = await fetch('http://127.0.0.1:8000/api/recipes');
-  //       const data = await response.json();
-  //       if (response.ok) {
-  //         setRecipes(data);
-  //       } else {
-  //         setError('Erreur lors de la récupération des recettes');
-  //       }
-  //     } catch (error) {
-  //       setError('Erreur lors de la récupération des recettes');
-  //     }
-  //   };
-
-  //   fetchRecipes();
-  // }, []);
-
-
   const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
@@ -95,12 +65,12 @@ const Home = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/recipes'); // Remplacez par l'URL de votre API
+        const response = await fetch('http://127.0.0.1:8000/api/recipes');
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des recettes');
         }
         const data = await response.json();
-        setRecipes(data.slice(0, 10)); // Limiter à 10 recettes
+        setRecipes(data.slice(0, 10));
       } catch (error) {
         setError('Erreur lors de la récupération des recettes');
       }
@@ -108,12 +78,12 @@ const Home = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/categories'); // Remplacez par l'URL de votre API
+        const response = await fetch('http://127.0.0.1:8000/api/categories');
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des catégories');
         }
         const data = await response.json();
-        setCategories(data.slice(0, 10)); // Limiter à 10 catégories
+        setCategories(data.slice(0, 10));
       } catch (error) {
         setError('Erreur lors de la récupération des catégories');
       }

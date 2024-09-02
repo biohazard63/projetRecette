@@ -97,10 +97,13 @@ nav li {
     text-decoration: none;
   }
 
-  .bm-menu-wrap {
+  
+
+  /* .bm-menu-wrap {
     right: 0 !important;
 
-  }
+
+  } */
 
   .bm-cross-button {
     color: #FFF;

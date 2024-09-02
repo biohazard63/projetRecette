@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Categories = () => {
-  const { categoryId } = useParams(); // Récupère l'identifiant de la catégorie depuis l'URL
+  const { categoryId } = useParams();
   const [recipes, setRecipes] = useState([]);
   const [category, setCategory] = useState({});
   const [error, setError] = useState('');
@@ -42,13 +42,6 @@ const Categories = () => {
 
   return (
     <div>
-        {/* <Banner 
-            title={category.name}
-            subtitle={subtitle} 
-            first_letter={first_letter} 
-            text={text} 
-            bannerVariants={bannerVariants} 
-        /> */}
       <h1>Les Recettes de la Catégorie {category.name}</h1>
       {error && <p>{error}</p>}
       <ul>

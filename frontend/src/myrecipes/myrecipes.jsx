@@ -1,4 +1,3 @@
-// src/components/account/account.jsx
 import React from 'react';
 
 const MyRecipes = () => {
