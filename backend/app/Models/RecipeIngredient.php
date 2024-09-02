@@ -12,6 +12,7 @@ class RecipeIngredient extends Model
         'recipe_id',
         'ingredient_id',
         'quantity',
+        'unit',
     ];
 
     public function recipe()

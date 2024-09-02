@@ -26,8 +26,8 @@ function Header() {
             <Link className="menu-item" to="/categories">Categories</Link>            
           </div>
           <div>
-            <Link className="menu-item" to="/create">Création</Link>
-            <Link className="menu-item" to="/login">Compte</Link>            
+            <Link className="menu-item" to="/recipes/new">Création</Link>
+            <Link className="menu-item" to="/login">Compte</Link>
           </div>
         </Menu>
 
@@ -49,7 +49,7 @@ function Header() {
           </nav>
 
           <div className='button_account'>
-            <Link to="/create">Création</Link>
+            <Link to="/recipes/new">Création</Link>
             <Link to="/login">Compte</Link>
           </div>
         </>
