@@ -6,6 +6,13 @@
     height: calc(100vh - 62.5px);
 }
 
+@media screen and (max-width: 1000px) {
+    .auth_container{
+        height: calc(100vh);    
+    }
+    
+}
+
 .imgContainer{
     display: flex;
     justify-content: center;
