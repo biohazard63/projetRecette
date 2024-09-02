@@ -42,14 +42,14 @@ function Login() {
   };
 
   return (
-      <main>
+    <div className='auth_container'>
       <div class="imgContainer">
           <img src="./images/1 (4).jpg" alt="placeholder" className="imgRegister"/>
       </div>
       <div class="formWrapperLogin">
           <div class="formCard">
           <h2>Fomulaire de connexion</h2>
-          <form onSubmit={handleLoginSubmit}>
+          <form className='form_login' onSubmit={handleLoginSubmit}>
               <div class="loginField">
                 <label>Nom:</label>
                 <input
@@ -77,13 +77,13 @@ function Login() {
               </div>
               {error && <p className="error">{error}</p>}
               {success && <p className="success">{success}</p>}
-              <button type="submit">Connexion</button>
+              <button className='main_button' type="submit">Connexion</button>
               <p>Pas encore de compte ? <a href="/register">Créer un compte</a></p>
 
           </form>
           </div>
       </div>
-    </main>
+    </div>
   );
 }
 

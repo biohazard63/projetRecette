@@ -3,7 +3,7 @@ import './slider.css';
 import { Link } from 'react-router-dom';
 import CardRecipe from '../card/card_recipe/card_recipe';
 import CardLink from '../card/card_link/card_link';
-import CardCategorie from '../card/card_categorie/card_categorie';
+import CardCategory from '../card/card_category/card_category';
 
 // import icon_vegetarian from '../../../public/icons/card/vegetarian.png';
 // import icon_meat from '../../../public/icons/card/meat.png';
@@ -38,19 +38,20 @@ const Slider = ({ cardVariants, cardLink, title_main, type }) => {
                 key={index}
                 image={card.image}
                 title={card.title}
-                icon_diet={card.icon_diet}
-                icon_favorite={card.icon_favorite}
-                background_color={card.background_color}
+                // icon_diet={card.icon_diet}
+                // icon_favorite={card.icon_favorite}
+                // background_color={card.background_color}
                 to={card.to}
+                id={card.id}
             />
             ))}
             {type === 'categorie' && cardVariants.map((card, index) => (
-            <CardCategorie 
+            <CardCategory 
                 key={index}
-                image={card.image}
-                title={card.title}
-                background_color={card.background_color}
-                to={card.to}
+                // image={card.image}
+                title={card.name}
+                // background_color={card.background_color}
+                // to={card.to}
             />
             ))}
             {cardLink.map((link, index) => (

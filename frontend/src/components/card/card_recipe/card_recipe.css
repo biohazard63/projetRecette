@@ -1,3 +1,7 @@
+.card_recipe {
+    background: #E27D60;
+}
+
 .card_image {
     display: flex;
     padding: 10px;
@@ -17,7 +21,7 @@
     color: #FFF;
     text-align: center;
     font-family: Pacifico;
-    font-size: 44px;
+    font-size: 38px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -26,7 +30,7 @@
 .card_icons {
     display: flex;
     padding: 0px 30px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     align-self: stretch;
 }
@@ -40,6 +44,7 @@
     background: none;
     box-shadow: none;
     padding: 0;
+    border: none;
 }
 .link-button:hover {
     background: none;

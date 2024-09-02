@@ -1,4 +1,4 @@
-main{
+.auth_container{
     display: flex;
     align-items: flex-start;
     flex: 1 0 0;
@@ -57,7 +57,7 @@ main{
     background: #F2E9E4;
 }
 
-h2{
+.auth h2 {
     color: #000;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: Pacifico;
@@ -66,7 +66,7 @@ h2{
     font-weight: 400;
     line-height: normal;
 }
-form{
+.form_login, .form_register{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,8 +83,8 @@ form{
 }
 input{
     display: flex;
-    width: 294px;
-    height: 62px;
+    width: 280px;
+    height: 60px;
     padding: 8px 16px;
     flex-direction: column;
     justify-content: center;
@@ -95,7 +95,8 @@ input{
     background: #FFF;
     border: none;
 }
-button{
+
+.main_button, .main_button {
     display: flex;
     padding: 0px 60px;
     justify-content: center;
@@ -115,11 +116,12 @@ button{
     font-style: normal;
     line-height: normal;
 }
-button:hover{
+
+.main_button:hover{
     background: #D36751;
     box-shadow: 0px -4px 4px 0px rgba(255, 255, 255, 0.25);
 }
-button:active{
+.main_button:active{
     background: #C1533D;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -128,7 +130,7 @@ button:active{
     .imgContainer{
         display: none;
     }
-    main{
+    .auth_container{
         flex-direction: column;
     }
 }
