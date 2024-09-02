@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../auth.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Axios from "axios";
 
 function Register() {
@@ -8,11 +7,9 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [verifyPassword, setVerifyPassword] = useState('');
-    const [role, setRole] = useState('user'); // Default role
+    const [role, setRole] = useState('user'); // Ajoutez le rôle avec une valeur par défaut
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-
-    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleRegisterSubmit = async (e) => {
         e.preventDefault();
@@ -42,15 +39,9 @@ function Register() {
             setSuccess('Inscription réussie !');
             setName('');
             setEmail('');
-            setRole('user'); // Reset role to default
+            setRole('user'); // Réinitialise le rôle à sa valeur par défaut
             setPassword('');
             setVerifyPassword('');
-
-            // Redirect to login page after a successful registration
-            setTimeout(() => {
-                navigate('/login');
-            }, 1500); // Adding a delay of 1.5 seconds to show the success message before redirection
-
         } catch (err) {
             setError('Une erreur est survenue.');
         }
