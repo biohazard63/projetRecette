@@ -19,22 +19,6 @@ header {
     
 }
 
-@media screen and (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-}
-
-@media screen and (max-width: 414px) {
-    nav ul {
-        flex-direction: column;
-        row-gap: 5px;
-    }
-    
-}
-
 nav a, .button_account a {
     color: #FFF;
     font-family: Pacifico;
@@ -63,6 +47,20 @@ nav li {
     gap: 20px;
 }
 
+.button_account .main_button, .bm-item .main_button {
+    box-shadow: none;
+    padding: 0;
+}
+
+.bm-item .main_button {
+    padding: 0.5em;
+    color: #000;
+}
+
+.bm-item .main_button:hover, .button_account .main_button:hover {
+    background: none;
+    box-shadow: none;
+}
 
 
 .bm-burger-button {

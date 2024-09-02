@@ -44,7 +44,7 @@ function Header() {
               <Link className="menu-item" to="/account">Compte</Link>
               {isAdmin && <Link className="menu-item" to="/dashboard">Dashboard</Link>}
               {isLoggedIn ? (
-                <button onClick={handleLogout} className="menu-item">Logout</button>
+                <button onClick={handleLogout} className="menu-item main_button">Logout</button>
               ) : (
                 <Link className="menu-item" to="/login">Login</Link>
               )}
@@ -70,7 +70,7 @@ function Header() {
               <Link to="/account">Compte</Link>
               {isAdmin && <Link to="/dashboard">Dashboard</Link>}
               {isLoggedIn ? (
-                <button onClick={handleLogout}>Logout</button>
+                <button className='main_button' onClick={handleLogout}>Logout</button>
               ) : (
                 <Link to="/login">Login</Link>
               )}

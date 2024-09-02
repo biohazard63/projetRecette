@@ -82,11 +82,3 @@ nav ul {
 nav li {
     display: inline;
 }
-
-.button_account {
-    display: flex;
-    width: 187px;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
