@@ -26,12 +26,9 @@ const CardRecipe = ({ image, title, icon_favorite, id }) => {
                 <h3>{truncatedTitle}</h3>
             </Link>
             <div className='card_icons'>
-                {/* <a>
+                {/* <button onClick={handleClick} className='link-button'>
                     <img src={icon_favorite} alt="favorite" />
-                </a> */}
-                <button onClick={handleClick} className='link-button'>
-                    <img src={icon_favorite} alt="favorite" />
-                </button>
+                </button> */}
             </div>
         </div>
     );
