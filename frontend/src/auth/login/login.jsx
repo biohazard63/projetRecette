@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../auth.css';
+
 function Login() {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
-  // const handleLoginSubmit = (event) => {
-  //   event.preventDefault();
-  //   // Logique de soumission du formulaire
-  //   // console.log('Name:', name);
-  //   // console.log('Email:', email);
-  //   // console.log('Password:', password);
-  // };
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -21,43 +16,44 @@ function Login() {
     setSuccess('');
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/{id}', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+      const response = await axios.post('http://127.0.0.1:8000/api/login', {
+        email,
+        password
       });
 
-      if (response.ok) {
-        setSuccess('Connexion réussie !');
-        // Vous pouvez rediriger l'utilisateur ou effectuer d'autres actions ici
+      console.log('Response:', response);
+
+      if (response.status === 200) {
+        console.log('Response data:', response.data);
+        if (response.data.user && response.data.user.id && response.data.user.name) {
+          const { id, name } = response.data.user;
+          sessionStorage.setItem('userId', id);
+          sessionStorage.setItem('userName', name);
+          setSuccess('Connexion réussie !');
+          navigate('/');
+        } else {
+          setError('User data is missing or incomplete in the response.');
+        }
       } else {
-        const data = await response.json();
-        setError(data.message || 'Une erreur est survenue.');
+        console.log('Error message:', response.data.message);
+        setError(response.data.message || 'Une erreur est survenue.');
       }
     } catch (err) {
+      console.error('Error:', err);
       setError('Une erreur est survenue.');
     }
   };
 
   return (
     <div className='auth_container'>
-      <div class="imgContainer">
+      <div className="imgContainer">
           <img src="./images/1 (4).jpg" alt="placeholder" className="imgRegister"/>
       </div>
-      <div class="formWrapperLogin">
-          <div class="formCard">
+      <div className="formWrapperLogin">
+          <div className="formCard">
           <h2>Fomulaire de connexion</h2>
           <form className='form_login' onSubmit={handleLoginSubmit}>
-              <div class="loginField">
-                <label>Nom:</label>
-                <input
-                    type="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
+              <div className="loginField">
                 <label>Email:</label>
                 <input
                     type="email"
@@ -66,7 +62,7 @@ function Login() {
                     required
                 />
               </div>
-              <div class="loginField">
+              <div className="loginField">
                 <label>Mot de passe:</label>
                 <input
                     type="password"
@@ -79,7 +75,6 @@ function Login() {
               {success && <p className="success">{success}</p>}
               <button className='main_button' type="submit">Connexion</button>
               <p>Pas encore de compte ? <a href="/register">Créer un compte</a></p>
-
           </form>
           </div>
       </div>

@@ -8,6 +8,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\FavoriteRecipeController;
 use App\Http\Controllers\RecipeIngredientController;
+use App\Http\Controllers\AuthController;
+
 
 /**
  * @OA\Info(
@@ -69,3 +71,6 @@ Route::post('recipe-ingredients', [RecipeIngredientController::class, 'store']);
 Route::get('recipe-ingredients/{recipeIngredient}', [RecipeIngredientController::class, 'show']);
 Route::put('recipe-ingredients/{recipeIngredient}', [RecipeIngredientController::class, 'update']);
 Route::delete('recipe-ingredients/{recipeIngredient}', [RecipeIngredientController::class, 'destroy']);
+
+
+Route::post('login', [AuthController::class, 'login']);
