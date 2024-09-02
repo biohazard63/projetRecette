@@ -49,14 +49,14 @@ function Register() {
     };
 
     return (
-        <main>
+        <div className='auth_container'>
             <div className="imgContainer">
                 <img src="./../../public/images/1 (16).jpg" alt="placeholder" className="imgRegister"/>
             </div>
             <div className="formWrapperRegister">
                 <div className="formCard">
                     <h2>Fomulaire d'Inscription</h2>
-                    <form onSubmit={handleRegisterSubmit}>
+                    <form className='form_register' onSubmit={handleRegisterSubmit}>
                         <div className="registerField">
                             <label>Pseudo:</label>
                             <input
@@ -102,12 +102,12 @@ function Register() {
                         </div>
                         {error && <p className="error">{error}</p>}
                         {success && <p className="success">{success}</p>}
-                        <button type="submit">Connexion</button>
+                        <button className='main_button' type="submit">Connexion</button>
                         <p>Vous avez déjà un compte ? <a href="/login">connexion</a></p>
                     </form>
                 </div>
             </div>
-        </main>
+        </div>
     );
 }
 

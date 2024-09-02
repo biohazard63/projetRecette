@@ -16,7 +16,7 @@ const CardLink = ({ title_link, background_color, text_btn, to }) => {
             {/* <a href={to}>
               <h4>{text_btn}</h4> 
             </a>           */}
-            <button onClick={handleClick} className='link-button'>
+            <button onClick={handleClick} className='link-button main_button'>
               <h4>{text_btn}</h4> 
             </button>   
         </div>

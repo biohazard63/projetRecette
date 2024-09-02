@@ -18,7 +18,7 @@
     border-radius: 30px 30px 0px 0px;
     background: #F2E9E4;
 }
-.card{
+/* .card{
     display: flex;
     width: 400px;
     height: 400px;
@@ -31,4 +31,47 @@
 
     border-radius: 20px;
     background: #C56183;
+} */
+
+
+.pagination_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    padding: 0px 24px 5px 24px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 80px;
+
+    color: #000;
+    text-align: center;
+    font-family: Pacifico;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.5;  
+}
+  
+  .pagination li a:hover {
+    background-color: #E27D60;
+  }
+  
+  .pagination li.active a {
+    background-color: #E27D60;
+    color: white;
+    border: 1px solid #E27D60;
+  }
+

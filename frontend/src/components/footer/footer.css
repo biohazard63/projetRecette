@@ -76,7 +76,7 @@ nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    /* row-gap: 50px; */
 }
 
 nav li {

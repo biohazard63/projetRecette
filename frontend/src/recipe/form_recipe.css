@@ -1,0 +1,58 @@
+.forme_recipe {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.forme_recipe h1 {
+    color: #000;
+    font-family: Pacifico;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.forme_recipe form {
+    display: flex;
+    padding: 30px 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    max-width: max-content;
+
+
+    border-radius: 30px;
+    background: #F2E9E4;
+}
+
+.description_form textarea, .instructions_form textarea {
+    display: flex;
+    width: 280px;
+    height: 100%;
+    padding: 8px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+
+    border-radius: 20px;
+    background: #FFF;
+    border: none;
+}
+
+.description_form textarea {
+
+    min-height: 120px;
+
+}
+
+.instructions_form textarea {
+
+    min-height: 300px;
+
+}

@@ -5,6 +5,9 @@
     gap: 48px;
     align-self: stretch;
     overflow: scroll;
+    border-radius: 30px;
+    background: #F2E9E4;
+    margin: 0px 5%;
 }
 
 .slider_container h2 {

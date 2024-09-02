@@ -1,6 +1,6 @@
 .card_categorie {
     border-radius: 20px;
-    background: #E27D60;
+    background: #77BA99;    
 }
 
 .border {
@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 30px;
     flex: 1 0 0;
     align-self: stretch;
 
@@ -33,7 +33,7 @@
     color: #000;
     text-align: center;
     font-family: Pacifico;
-    font-size: 24px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

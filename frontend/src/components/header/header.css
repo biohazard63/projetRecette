@@ -5,8 +5,34 @@ header {
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
+    flex-wrap: wrap;
 
     background: #E27D60;
+}
+
+@media screen and (max-width: 1000px) {
+    header {
+        background: none;
+        padding: 0;
+
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+}
+
+@media screen and (max-width: 414px) {
+    nav ul {
+        flex-direction: column;
+        row-gap: 5px;
+    }
+    
 }
 
 nav a, .button_account a {
@@ -22,7 +48,7 @@ nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    column-gap: 50px;
 }
 
 nav li {
@@ -35,4 +61,58 @@ nav li {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+
+
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: 36px;
+  }
+  
+  .bm-burger-bars {
+    background: #E27D60;
+  }
+  
+  .bm-menu {
+    background: #E27D60;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+  }
+  
+  .bm-item-list {
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+  }
+  
+  .menu-item {
+    display: block;
+    padding: 0.5em;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .bm-menu-wrap {
+    right: 0 !important;
+
+  }
+
+  .bm-cross-button {
+    color: #FFF;
+    border-color: #FFF;
+    background: white;
+    border-radius: 5px;
+  }
+
+.bm-overlay {
+    left: 0;
+}
+
+.bm-cross {
+    background: #E27D60;
 }

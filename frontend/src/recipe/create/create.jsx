@@ -1,5 +1,6 @@
 // src/components/account/account.jsx
 import React, { useState } from 'react';
+import '../form_recipe.css';
 
 const CreateRecipe = () => {
   const [title, setTitle] = useState('');
@@ -38,8 +39,8 @@ const CreateRecipe = () => {
 
 
   return (
-    <div>
-      <h2>Créer recettes</h2>
+    <div className='forme_recipe'>
+      <h1>Créer recettes</h1>
       <form onSubmit={handleRecipeSubmit}>
         <div>
           <label>Titre recette :</label>
@@ -50,23 +51,23 @@ const CreateRecipe = () => {
               required
           />
         </div>
-        <div>
+        <div className='description_form'>
           <label>Description :</label>
-          <input
+          <textarea
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-          />
+          ></textarea>
         </div>
-        <div>
+        <div className='instructions_form'>
           <label>Instructions :</label>
-          <input
+          <textarea
               type="text"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               required
-          />
+          ></textarea>
         </div>
         {error && <p className="error">{error}</p>}
         {success && <p className="success">{success}</p>}
