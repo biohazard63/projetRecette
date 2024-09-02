@@ -18,18 +18,10 @@ import DeleteRecipe from './recipe/delete/delete';
 import Legals from './legals/legals';
 import MyRecipe from './myrecipes/myrecipes';
 import Category from './category/get/category';
-import RecipesFilter from './components/RecipesFilter/RecipesFilter';
-
 
 function App() {
   const location = useLocation();
   const showFooter = location.pathname !== '/login' && location.pathname !== '/register';
-
-  const [filter, setFilter] = useState('');
-
-  const onFilterChange = (newFilter) => {
-    setFilter(newFilter);
-  };
 
   return (
     <>
@@ -48,8 +40,7 @@ function App() {
           <Route path="/myrecipes" element={<MyRecipe />} />
           <Route path="/legals" element={<Legals />} />
           <Route path="/categories/:categoryId" element={<Category />} />
-          <Route path="/recipes/filter" element={<RecipesFilter onFilterChange={onFilterChange} />} />
-          </Routes>
+        </Routes>
         {showFooter && <Footer />}
     </>
   );
