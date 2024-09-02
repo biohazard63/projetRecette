@@ -8,21 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\FavoriteRecipeController;
 use App\Http\Controllers\RecipeIngredientController;
-
-/**
- * @OA\Info(
- *     version="1.0.0",
- *     title="API de Gestion des Recettes",
- *     description="API pour gérer les utilisateurs, recettes, catégories, ingrédients et favoris.",
- *     @OA\Contact(
- *         email="support@votreapp.com"
- *     ),
- *     @OA\License(
- *         name="MIT",
- *         url="https://opensource.org/licenses/MIT"
- *     )
- * )
- */
+use App\Http\Controllers\AuthController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -69,3 +55,5 @@ Route::post('recipe-ingredients', [RecipeIngredientController::class, 'store']);
 Route::get('recipe-ingredients/{recipeIngredient}', [RecipeIngredientController::class, 'show']);
 Route::put('recipe-ingredients/{recipeIngredient}', [RecipeIngredientController::class, 'update']);
 Route::delete('recipe-ingredients/{recipeIngredient}', [RecipeIngredientController::class, 'destroy']);
+
+Route::post('login', [AuthController::class, 'login']);

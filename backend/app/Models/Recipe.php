@@ -87,6 +87,20 @@ class Recipe extends Model
     public $category_id;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'servings',
+        'description',
+        'instructions',
+        'user_id',
+        'category_id',
+    ];
+
+    /**
      * Get the user who created the recipe.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
