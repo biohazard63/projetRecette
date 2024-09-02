@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,12 +14,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Seed the users table
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        Category::factory(15)->create();
+
 
         // Seed the database with JSON data
-        $this->call(JsonDataSeeder::class);
+        // $this->call(JsonDataSeeder::class);
     }
 }

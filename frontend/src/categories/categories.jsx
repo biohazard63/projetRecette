@@ -21,8 +21,8 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState('');
 
-  const categoriesPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
+  const categoriesPerPage = 8;
+  const [currentPage, setCurrentPage] = useState(0);
 
 
   useEffect(() => {
@@ -44,92 +44,34 @@ const Categories = () => {
   }, []);
 
 
-  // const allCards = new Array(500).fill(null).map((_, index) => ({ id: index, title: `Category ${index + 1}` }));
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [cardsPerPage] = useState(9);
 
-  // const indexOfLastCard = currentPage * cardsPerPage;
-  // const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  // const currentCards = allCards.slice(indexOfFirstCard, indexOfLastCard);
-  // const totalPages = Math.ceil(allCards.length / cardsPerPage);
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
+  };
 
-  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // // Affiche les contrôles de pagination avec des ellipses et des boutons de saut
-  // const renderPageNumbers = () => {
-  //   let pages = [];
-  //   let leftSide = currentPage - 2;
-  //   let rightSide = currentPage + 2;
-
-  //   if (leftSide <= 1) {
-  //     rightSide = 5;
-  //     leftSide = 1;
-  //   }
-  //   if (rightSide >= totalPages) {
-  //     leftSide = totalPages - 4;
-  //     rightSide = totalPages;
-  //     if (leftSide <= 1) leftSide = 1;
-  //   }
-
-  //   for (let number = leftSide; number <= rightSide; number++) {
-  //     if (number > 0 && number <= totalPages) {
-  //       pages.push(number);
-  //     }
-  //   }
-
-
-    const handlePageClick = (data) => {
-      setCurrentPage(data.selected);
-    };
-  
-    const offset = currentPage * categoriesPerPage;
-    const currentRecipes = categories.slice(offset, offset + categoriesPerPage);
-    const pageCount = Math.ceil(categories.length / categoriesPerPage);
-
-  //   return (
-  //     <>
-  //       {currentPage > 1 && (
-  //         <>
-  //           <button onClick={() => paginate(1)}>{"<<"}</button>
-  //           <button onClick={() => paginate(currentPage - 1)}>{"<"}</button>
-  //         </>
-  //       )}
-  //       {leftSide > 1 && <button onClick={() => paginate(leftSide - 1)}>...</button>}
-  //       {pages.map(number => (
-  //         <button key={number} onClick={() => paginate(number)} className={currentPage === number ? 'active' : ''}>
-  //           {number}
-  //         </button>
-  //       ))}
-  //       {rightSide < totalPages && <button onClick={() => paginate(rightSide + 1)}>...</button>}
-  //       {currentPage < totalPages && (
-  //         <>
-  //           <button onClick={() => paginate(currentPage + 1)}>{">"}</button>
-  //           <button onClick={() => paginate(totalPages)}>{">>"}</button>
-  //         </>
-  //       )}
-  //     </>
-  //   );
-  // };
+  const offset = currentPage * categoriesPerPage;
+  const currentCategories = categories.slice(offset, offset + categoriesPerPage);
+  const pageCount = Math.ceil(categories.length / categoriesPerPage);
 
   return (
     <>
-      <Banner 
+      <Banner
         title={title}
-        subtitle={subtitle} 
-        first_letter={first_letter} 
-        text={text} 
+        subtitle={subtitle}
+        first_letter={first_letter}
+        text={text}
         bannerVariants={bannerVariants} />
       <div className='recipes'>
-        <h2>Page {currentPage}</h2>
+        <h2>Page {currentPage + 1}</h2>
         <div className='cardContainer'>
           {error && <p>{error}</p>}
-          {categories.map((card, index) => (
-            <CardCategory 
-                key={index}
-                title={card.name}
-                id={card.id}
+          {currentCategories.map((card, index) => (
+            <CardCategory
+              key={index}
+              title={card.name}
+              id={card.id}
             />
-          ))} 
+          ))}
           <div className='pagination_container'>
             <ReactPaginate
               previousLabel={"<"}
@@ -137,7 +79,7 @@ const Categories = () => {
               breakLabel={"..."}
               pageCount={pageCount}
               marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
+              pageRangeDisplayed={2}
               onPageChange={handlePageClick}
               containerClassName={"pagination"}
               activeClassName={"active"}
