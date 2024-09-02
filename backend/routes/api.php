@@ -7,6 +7,8 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\FavoriteRecipeController;
+use App\Http\Controllers\RecipeIngredientController;
+
 
 /**
  * @OA\Info(
@@ -32,3 +34,4 @@ Route::apiResource('recipes', RecipeController::class);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('ingredients', IngredientController::class);
 Route::apiResource('favorite-recipes', FavoriteRecipeController::class);
+Route::resource('recipe-ingredients', RecipeIngredientController::class);
