@@ -18,11 +18,18 @@ import DeleteRecipe from './recipe/delete/delete';
 import Legals from './legals/legals';
 import MyRecipe from './myrecipes/myrecipes';
 import Category from './category/get/category';
-import Dashboard from "./(dashboard)/dashboard.jsx";
+import RecipesFilter from './components/RecipesFilter/RecipesFilter';
+
 
 function App() {
   const location = useLocation();
   const showFooter = location.pathname !== '/login' && location.pathname !== '/register';
+
+  const [filter, setFilter] = useState('');
+
+  const onFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
 
   return (
     <>
@@ -42,7 +49,9 @@ function App() {
           <Route path="/legals" element={<Legals />} />
           <Route path="/categories/:categoryId" element={<Category />} />
             <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/recipes/filter" element={<RecipesFilter onFilterChange={onFilterChange} />} />
         </Routes>
+
         {showFooter && <Footer />}
     </>
   );

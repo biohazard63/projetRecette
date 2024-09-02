@@ -19,11 +19,12 @@ const Banner = ({ image, title, subtitle, first_letter, text, bannerVariants, de
           {ingredients ? (
             <div className='ingredients'>
               {ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient.quantity} {ingredient.name}</li>
+                ingredient && ingredient.name ? (
+                  <li key={index}>{ingredient.quantity} {ingredient.name}</li>                  
+                ) : null
               ))}
             </div>
-          ) : (null
-          )}    
+          ) : null}  
           {bannerVariants ? (
             <div className='buttons_banner'>
               {bannerVariants.map((link, index) => (

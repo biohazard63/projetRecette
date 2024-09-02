@@ -5,110 +5,78 @@ import axios from 'axios';
 import Banner from '../../components/banner/banner';
 import './recipe.css';
 
-
 const GetRecipe = () => {
-
   let subtitle = "Ingrédients";
   let first_letter = "V";
   let text = "oici les ingrédients pour la recette :";
 
-
-  // const [title, setTitle] = useState('');
-  // // const [image , setImage] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [instructions, setInstructions] = useState('');
-  // // const [ingredients, setIngredients] = useState('');
-  // const [error, setError] = useState('');
-  // const [success, setSuccess] = useState('');
-  
-  // const handleRecipeSubmit = async (event) => {
-  //   event.preventDefault();
-  //   setError('');
-  //   setSuccess('');
-
-  //   try {
-  //     const response = await fetch('http://127.0.0.1:8000/api/recipes/{id}', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ title, description, instructions }),
-  //     });
-
-  //     if (response.ok) {
-  //       setSuccess('Recette ajouter !');
-  //       // Vous pouvez rediriger l'utilisateur ou effectuer d'autres actions ici
-  //     } else {
-  //       const data = await response.json();
-  //       setError(data.message || 'Une erreur est survenue.');
-  //     }
-  //   } catch (err) {
-  //     setError('Une erreur est survenue.');
-  //   }
-  // };
-
   const { id } = useParams(); // Assurez-vous que votre routeur passe l'ID de la recette
   const [recipe, setRecipe] = useState(null);
+  const [ingredients, setIngredients] = useState([]);
   const [error, setError] = useState('');
-  // const [success, setSuccess] = useState('');
-
-  // useEffect(() => {
-  //   const fetchRecipe = async () => {
-  //     try {
-  //       const response = await fetch(`http://127.0.0.1:8000/api/recipes/${id}`);
-  //       if (!response.ok) {
-  //         throw new Error('Erreur lors de la récupération de la recette');
-  //       }
-  //       const data = await response.json();
-  //       setRecipe(data);
-  //     } catch (error) {
-  //       setError('Erreur lors de la récupération de la recette');
-  //     }
-  //   };
-
-  //   fetchRecipe();
-  // }, [id]);
 
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/recipes/${id}`);
+        const responseIngredients = await axios.get(`http://127.0.0.1:8000/api/recipe-ingredients`);
+        const responseIngredient = await axios.get(`http://127.0.0.1:8000/api/ingredients`);
+        
         const recipeData = response.data;
         setRecipe(recipeData);
-        const recipeIngredients = recipeData.ingredients; // Supposons que les ingrédients sont dans la propriété 'ingredients'
-        setIngredients(recipeIngredients);
-        console.log(recipeIngredients);  
+        
+        const recipeIngredients = responseIngredients.data; // Supposons que les ingrédients sont dans la propriété 'data'
+        const allIngredients = responseIngredient.data; // Supposons que les ingrédients sont dans la propriété 'data'
+
+        // Filtrer les ingrédients pour la recette actuelle
+        const filteredIngredients = recipeIngredients
+          .filter(ri => ri.recipe_id === parseInt(id))
+          .map(ri => {
+            const ingredient = allIngredients.find(i => i.id === ri.ingredient_id);
+            return {
+              ...ingredient,
+              quantity: ri.quantity,
+              unit: ri.unit
+            };
+          });
+
+        setIngredients(filteredIngredients);
       } catch (err) {
         setError('Erreur lors du chargement de la recette');
       }
     };
-  
+
     fetchRecipe();
   }, [id]);
 
-  
   return (
+    <div className='recipe_container'>
+      {error && <p>{error}</p>}
 
-  <div className='recipe_container'>
-    {error && <p>{error}</p>}
+      {recipe ? (
+        <Banner 
+          title={recipe.title}
+          subtitle={subtitle} 
+          first_letter={first_letter} 
+          text={text} 
+          description={recipe.description}
+          appliance={recipe.appliance}
+          servings={recipe.servings}
+          instructions={recipe.instructions}
+          ingredients={ingredients}
+        />
+      ) : (
+        <p>Chargement...</p>
+      )}
 
-    {recipe ? (
-      <Banner 
-        title={recipe.title}
-        subtitle={subtitle} 
-        first_letter={first_letter} 
-        text={text} 
-        description={recipe.description}
-        appliance={recipe.appliance}
-        servings={recipe.servings}
-        instructions={recipe.instructions}
-        ingredients={recipe.ingredients}
-      />
-    ) : (
-      <p>Chargement...</p>
-    )}
-  </div>
-
+      {Array.isArray(ingredients) && ingredients.length > 0 ? (
+        ingredients.map((ingredient, index) => (
+          <li key={index}>{ingredient.quantity} {ingredient.unit} {ingredient.name}</li>
+        ))
+      ) : (
+        <p>Pas d'ingrédients disponibles</p>
+      )}
+    </div>
   );
 };
 

@@ -57,7 +57,7 @@ nav li {
 
 .button_account {
     display: flex;
-    width: 187px;
+    width: max-content;
     justify-content: center;
     align-items: center;
     gap: 20px;
