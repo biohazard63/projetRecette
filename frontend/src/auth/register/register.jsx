@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../auth.css';
-import Axios from "axios";
 
 function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [verifyPassword, setVerifyPassword] = useState('');
-    const [role, setRole] = useState('user'); // Ajoutez le rôle avec une valeur par défaut
+    const [role, setRole] = useState('user');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
     const handleRegisterSubmit = async (e) => {
         e.preventDefault();
@@ -22,26 +24,27 @@ function Register() {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: name, email, password, role }),
+            const response = await axios.post('http://127.0.0.1:8000/api/users', {
+                name,
+                email,
+                password,
+                role
             });
 
-            if (!response.ok) {
-                const data = await response.json();
-                setError(data.message || 'Une erreur est survenue.');
-                return;
-            }
+            if (response.status === 201) {
+                setSuccess('Inscription réussie !');
+                setName('');
+                setEmail('');
+                setPassword('');
+                setVerifyPassword('');
+                setRole('user');
 
-            setSuccess('Inscription réussie !');
-            setName('');
-            setEmail('');
-            setRole('user'); // Réinitialise le rôle à sa valeur par défaut
-            setPassword('');
-            setVerifyPassword('');
+                setTimeout(() => {
+                    navigate('/login');
+                }, 1500);
+            } else {
+                setError(response.data.message || 'Une erreur est survenue.');
+            }
         } catch (err) {
             setError('Une erreur est survenue.');
         }
@@ -50,11 +53,11 @@ function Register() {
     return (
         <div className='auth_container'>
             <div className="imgContainer">
-                <img src="./../../public/images/1 (16).jpg" alt="placeholder" className="imgRegister"/>
+                <img src="./../../public/images/1 (16).jpg" alt="placeholder" className="imgRegister" />
             </div>
             <div className="formWrapperRegister">
                 <div className="formCard">
-                    <h2>Fomulaire d'Inscription</h2>
+                    <h2>Formulaire d'Inscription</h2>
                     <form className='form_register' onSubmit={handleRegisterSubmit}>
                         <div className="registerField">
                             <label>Pseudo:</label>
@@ -94,7 +97,7 @@ function Register() {
                         {error && <p className="error">{error}</p>}
                         {success && <p className="success">{success}</p>}
                         <button className='main_button' type="submit">Inscription</button>
-                        <p>Vous avez déjà un compte ? <a href="/login">connexion</a></p>
+                        <p>Vous avez déjà un compte ? <a href="/login">Connexion</a></p>
                     </form>
                 </div>
             </div>
