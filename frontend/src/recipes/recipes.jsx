@@ -17,7 +17,7 @@ const Recipes = () => {
   let first_letter = "D";
   let text = "écouvrez le plaisir de créer et de partager vos recettes avec notre communauté gourmande et créative dans le thème de l’Anti-gaspi. Voici comment commencer :";
   const recipesPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
 
 
   const bannerVariants = [
@@ -58,19 +58,19 @@ const Recipes = () => {
 
   return (
     <>
-      <Banner 
+      <Banner
         title={title}
-        subtitle={subtitle} 
-        first_letter={first_letter} 
-        text={text} 
-        bannerVariants={bannerVariants} 
+        subtitle={subtitle}
+        first_letter={first_letter}
+        text={text}
+        bannerVariants={bannerVariants}
       />
       <div className='recipes'>
         <h2>Nos recettes</h2>
         <div className='filterSection'>
           <RecipesFilter />
         </div>
-        <h2>Page {currentPage}</h2>
+        <h2>Page {currentPage + 1}</h2>
         <div className='cardContainer'>
           {/* {currentCards.map(card => (
             <div className='card card_recipe' key={card.id}>{card.title}</div>
@@ -79,24 +79,24 @@ const Recipes = () => {
           {error && <p>{error}</p>}
 
           {currentRecipes.map((card, index) => (
-            <CardRecipe 
-                key={index}
-                image={card.image}
-                title={card.title}
-                // icon_diet={card.icon_diet}
-                // icon_favorite={card.icon_favorite}
-                // background_color={card.background_color}
-                to={card.to}
-                id={card.id}
+            <CardRecipe
+              key={index}
+              image={card.image}
+              title={card.title}
+              // icon_diet={card.icon_diet}
+              // icon_favorite={card.icon_favorite}
+              // background_color={card.background_color}
+              to={card.to}
+              id={card.id}
             />
-          ))} 
+          ))}
           <div className='pagination_container'>
             <ReactPaginate
               previousLabel={"<"}
               nextLabel={">"}
               breakLabel={"..."}
               pageCount={pageCount}
-              marginPagesDisplayed={2}
+              marginPagesDisplayed={5}
               pageRangeDisplayed={5}
               onPageChange={handlePageClick}
               containerClassName={"pagination"}
@@ -122,7 +122,7 @@ const Recipes = () => {
             ))}
           </ul>
         </div> */}
-      </div>    
+      </div>
     </>
 
   );
