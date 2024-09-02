@@ -7,6 +7,7 @@ function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [refresh, setRefresh] = useState(0); // État pour forcer le re-rendu
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,9 +18,16 @@ function Header() {
 
   useEffect(() => {
     const userId = sessionStorage.getItem('userId');
-    const userRole = sessionStorage.getItem('Role'); // Ensure the key matches the stored value
+    const userRole = sessionStorage.getItem('Role'); 
     setIsLoggedIn(!!userId);
     setIsAdmin(userRole === 'admin');
+  }, [refresh]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRefresh(prev => prev + 1);
+    }, 2000); 
+    return () => clearInterval(interval); 
   }, []);
 
   const handleLogout = () => {

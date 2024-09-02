@@ -18,6 +18,7 @@ import DeleteRecipe from './recipe/delete/delete';
 import Legals from './legals/legals';
 import MyRecipe from './myrecipes/myrecipes';
 import Category from './category/get/category';
+import Dashboard from './(dashboard)/dashboard';
 
 function App() {
   const location = useLocation();
@@ -40,6 +41,7 @@ function App() {
           <Route path="/myrecipes" element={<MyRecipe />} />
           <Route path="/legals" element={<Legals />} />
           <Route path="/categories/:categoryId" element={<Category />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         {showFooter && <Footer />}
       </>
