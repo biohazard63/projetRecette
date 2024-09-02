@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ingredient;
 use App\Models\Recipe;
+use App\Models\RecipeIngredient;
 use Illuminate\Http\Request;
 
 /**
@@ -64,15 +66,37 @@ class RecipeController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'servings' => 'required|integer',
             'description' => 'required|string',
             'instructions' => 'required|string',
+            'ingredients' => 'required|array',
+            'ingredients.*.name' => 'required|string|max:255',
+            'ingredients.*.quantity' => 'nullable|string|max:255',
+            'ingredients.*.unit' => 'nullable|string|max:255',
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        $recipe = Recipe::create($request->all());
+        $recipe = Recipe::create([
+            'title' => $request->title,
+            'servings' => $request->servings,
+            'description' => $request->description,
+            'instructions' => $request->instructions,
+            'user_id' => $request->user_id,
+            'category_id' => $request->category_id,
+        ]);
 
-        return response()->json($recipe, 201);
+        foreach ($request->ingredients as $ingredientData) {
+            $ingredient = Ingredient::firstOrCreate(['name' => $ingredientData['name']]);
+            RecipeIngredient::create([
+                'recipe_id' => $recipe->id,
+                'ingredient_id' => $ingredient->id,
+                'quantity' => $ingredientData['quantity'],
+                'unit' => $ingredientData['unit'],
+            ]);
+        }
+
+        return response()->json(['message' => 'Recette ajoutée !', 'recipe' => $recipe], 201);
     }
 
     /**
