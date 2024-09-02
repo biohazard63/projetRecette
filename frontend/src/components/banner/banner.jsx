@@ -28,10 +28,10 @@ const Banner = ({ image, title, subtitle, first_letter, text, bannerVariants, de
           {bannerVariants ? (
             <div className='buttons_banner'>
               {bannerVariants.map((link, index) => (
-                <a key={index} href={link.to} className='button_banner' style={{ background: link.background }}>
+                <div key={index} href={link.to} className='button_banner' style={{ background: link.background }}>
                   <h3>{link.title}</h3>
                   <img src={link.icon} alt={link.title} />
-                </a>
+                </div>
               ))}
             </div> 
           ) : (null
