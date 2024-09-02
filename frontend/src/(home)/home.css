@@ -1,0 +1,31 @@
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 40px;
+}
+
+.container_cards_link {
+    display: flex;
+    justify-content: center;
+    column-gap: 20%;
+}
+
+@media screen and (max-width: 768px) {
+    .container_cards_link {
+        column-gap: 5%;
+
+    }
+    
+}
+
+
+@media screen and (max-width: 660px) {
+    .container_cards_link {
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: center;
+    }
+    
+}

@@ -1,32 +1,60 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
+import { slide as Menu } from 'react-burger-menu';
 
 
 function Header() {
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       <header>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Accueil</Link>
-            </li>
-            <li>
-              <Link to="/recipes">Recettes</Link>
-            </li>
-            <li>
-              <Link to="/categories">Categories</Link>
-            </li>
-          </ul>
+      {windowWidth < 1000 ? (
 
-        </nav>
+        <Menu>
+          <div>
+            <Link className="menu-item" to="/">Accueil</Link>
+            <Link className="menu-item" to="/recipes">Recettes</Link>
+            <Link className="menu-item" to="/categories">Categories</Link>            
+          </div>
+          <div>
+            <Link className="menu-item" to="/create">Création</Link>
+            <Link className="menu-item" to="/login">Compte</Link>            
+          </div>
+        </Menu>
 
-        <div className='button_account'>
-          <Link to="/create">Création</Link>
-          <Link to="/login">Compte</Link>
-        </div>
+      ) : (
+        <>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Accueil</Link>
+              </li>
+              <li>
+                <Link to="/recipes">Recettes</Link>
+              </li>
+              <li>
+                <Link to="/categories">Categories</Link>
+              </li>
+            </ul>
+
+          </nav>
+
+          <div className='button_account'>
+            <Link to="/create">Création</Link>
+            <Link to="/login">Compte</Link>
+          </div>
+        </>
+      )}
+
       </header>
     </>
   )

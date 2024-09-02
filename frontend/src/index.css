@@ -17,6 +17,8 @@ body {
   align-items: center;
   gap: 50px;
   width: 100%;
+  min-height: 100vh;
+
 }
 
 a {
@@ -33,3 +35,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 5px;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
