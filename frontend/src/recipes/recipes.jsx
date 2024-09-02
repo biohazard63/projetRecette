@@ -15,7 +15,7 @@ const Recipes = () => {
   const first_letter = "D";
   const text = "écouvrez le plaisir de créer et de partager vos recettes avec notre communauté gourmande et créative dans le thème de l’Anti-gaspi. Voici comment commencer :";
   const recipesPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(0); // Use 0-based indexing for pages
+  const [currentPage, setCurrentPage] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedIngredient, setSelectedIngredient] = useState('');
   const [categories, setCategories] = useState([]);
@@ -23,6 +23,7 @@ const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [error, setError] = useState('');
+
 
   const bannerVariants = [
     { title: "Création", icon: icon_create, background: "#E27D60", to: "/create" },
@@ -82,12 +83,12 @@ const Recipes = () => {
 
   return (
     <>
-      <Banner 
+      <Banner
         title={title}
-        subtitle={subtitle} 
-        first_letter={first_letter} 
-        text={text} 
-        bannerVariants={bannerVariants} 
+        subtitle={subtitle}
+        first_letter={first_letter}
+        text={text}
+        bannerVariants={bannerVariants}
       />
       <div className='recipes'>
         <h2>Nos recettes</h2>
@@ -108,7 +109,7 @@ const Recipes = () => {
             ))}
           </select>
         </div>
-        <h2>Page {currentPage + 1}</h2> {/* Displaying 1-based index for page */}
+        <h2>Page {currentPage + 1}</h2>
         <div className='cardContainer'>
           {error && <p>{error}</p>}
           {currentRecipes.map((card, index) => (
@@ -119,14 +120,14 @@ const Recipes = () => {
                 to={card.to}
                 id={card.id}
             />
-          ))} 
+          ))}
           <div className='pagination_container'>
             <ReactPaginate
               previousLabel={"<"}
               nextLabel={">"}
               breakLabel={"..."}
               pageCount={pageCount}
-              marginPagesDisplayed={2}
+              marginPagesDisplayed={5}
               pageRangeDisplayed={5}
               onPageChange={handlePageClick}
               containerClassName={"pagination"}
