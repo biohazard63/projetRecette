@@ -12,7 +12,18 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Connexion réussie !'], 200);
+            $user = Auth::user();
+            if ($user) {
+                return response()->json([
+                    'message' => 'Connexion réussie !',
+                    'user' => [
+                        'id' => $user->id,
+                        'name' => $user->name
+                    ]
+                ], 200);
+            } else {
+                return response()->json(['message' => 'User not found.'], 404);
+            }
         } else {
             return response()->json(['message' => 'Identifiants invalides.'], 401);
         }

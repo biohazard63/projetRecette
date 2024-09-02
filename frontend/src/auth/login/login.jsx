@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../auth.css';
 
 function Login() {
@@ -7,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -19,13 +21,25 @@ function Login() {
         password
       });
 
+      console.log('Response:', response);
+
       if (response.status === 200) {
-        setSuccess('Connexion réussie !');
-        // Vous pouvez rediriger l'utilisateur ou effectuer d'autres actions ici
+        console.log('Response data:', response.data);
+        if (response.data.user && response.data.user.id && response.data.user.name) {
+          const { id, name } = response.data.user;
+          sessionStorage.setItem('userId', id);
+          sessionStorage.setItem('userName', name);
+          setSuccess('Connexion réussie !');
+          navigate('/');
+        } else {
+          setError('User data is missing or incomplete in the response.');
+        }
       } else {
+        console.log('Error message:', response.data.message);
         setError(response.data.message || 'Une erreur est survenue.');
       }
     } catch (err) {
+      console.error('Error:', err);
       setError('Une erreur est survenue.');
     }
   };
