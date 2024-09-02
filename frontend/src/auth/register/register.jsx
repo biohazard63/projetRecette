@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import '../auth.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import Axios from "axios";
 
 function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [role, setRole] = useState('');
     const [verifyPassword, setVerifyPassword] = useState('');
+    const [role, setRole] = useState('user'); // Default role
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleRegisterSubmit = async (e) => {
         e.preventDefault();
@@ -27,7 +30,7 @@ function Register() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ name: name, email, password, role }),
             });
 
             if (!response.ok) {
@@ -39,13 +42,18 @@ function Register() {
             setSuccess('Inscription réussie !');
             setName('');
             setEmail('');
-            // setRole('');
+            setRole('user'); // Reset role to default
             setPassword('');
             setVerifyPassword('');
+
+            // Redirect to login page after a successful registration
+            setTimeout(() => {
+                navigate('/login');
+            }, 1500); // Adding a delay of 1.5 seconds to show the success message before redirection
+
         } catch (err) {
             setError('Une erreur est survenue.');
         }
-
     };
 
     return (
@@ -60,7 +68,7 @@ function Register() {
                         <div className="registerField">
                             <label>Pseudo:</label>
                             <input
-                                type="name"
+                                type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
@@ -72,16 +80,6 @@ function Register() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
-                            {/* <label>Role:</label>
-                            <input
-                                type="role"
-                                value={role}
-                                onChange={(e) => setRole(e.target.value)}
-                                required
-                            /> */}
-                        </div>
-
-                        <div className="registerField">
                             <label>Mot de passe:</label>
                             <input
                                 type="password"
@@ -89,20 +87,22 @@ function Register() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                        </div>
-                        <div className="registerField">
                             <label>Vérifiez le mot de passe:</label>
-                            {error && <p className="error">{error}</p>}
                             <input
                                 type="password"
                                 value={verifyPassword}
                                 onChange={(e) => setVerifyPassword(e.target.value)}
                                 required
                             />
+                            <label>Rôle:</label>
+                            <select value={role} onChange={(e) => setRole(e.target.value)}>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
                         </div>
                         {error && <p className="error">{error}</p>}
                         {success && <p className="success">{success}</p>}
-                        <button className='main_button' type="submit">Connexion</button>
+                        <button className='main_button' type="submit">Inscription</button>
                         <p>Vous avez déjà un compte ? <a href="/login">connexion</a></p>
                     </form>
                 </div>
