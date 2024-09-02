@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ReactPaginate from 'react-paginate';
 import './recipes.css';
-import RecipesFilter from '../components/recipesFilter/recipesFilter';
 import CardRecipe from '../components/card/card_recipe/card_recipe';
-
 import Banner from '../components/banner/banner';
 import icon_create from '/icons/icon_create.png';
 import icon_wastage from '/icons/icon_wastage.png';
 import icon_diet from '/icons/icon_diet.png';
 import icon_publish from '/icons/icon_publish.png';
-
+import axios from 'axios';
 
 const Recipes = () => {
-  let title = "Le Frigo Magique";
-  let subtitle = "Bienvenue";
-  let first_letter = "D";
-  let text = "écouvrez le plaisir de créer et de partager vos recettes avec notre communauté gourmande et créative dans le thème de l’Anti-gaspi. Voici comment commencer :";
+  const title = "Le Frigo Magique";
+  const subtitle = "Bienvenue";
+  const first_letter = "D";
+  const text = "écouvrez le plaisir de créer et de partager vos recettes avec notre communauté gourmande et créative dans le thème de l’Anti-gaspi. Voici comment commencer :";
   const recipesPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
-
+  const [currentPage, setCurrentPage] = useState(0); // Use 0-based indexing for pages
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedIngredient, setSelectedIngredient] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [recipeIngredients, setRecipeIngredients] = useState([]);
+  const [error, setError] = useState('');
 
   const bannerVariants = [
     { title: "Création", icon: icon_create, background: "#E27D60", to: "/create" },
@@ -27,34 +31,54 @@ const Recipes = () => {
     { title: "Publiez", icon: icon_publish, background: "#F6C90E", to: "/recipes" },
   ];
 
-  const [recipes, setRecipes] = useState([]);
-  const [error, setError] = useState('');
-
   useEffect(() => {
-    const fetchRecipes = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/recipes');
-        const data = await response.json();
-        if (response.ok) {
-          setRecipes(data);
-        } else {
-          setError('Erreur lors de la récupération des recettes');
-        }
+        const [recipesResponse, categoriesResponse, ingredientsResponse, recipeIngredientsResponse] = await Promise.all([
+          axios.get('http://127.0.0.1:8000/api/recipes'),
+          axios.get('http://127.0.0.1:8000/api/categories'),
+          axios.get('http://127.0.0.1:8000/api/ingredients'),
+          axios.get('http://127.0.0.1:8000/api/recipe-ingredients')
+        ]);
+
+        setRecipes(recipesResponse.data);
+        setCategories(categoriesResponse.data);
+        setIngredients(ingredientsResponse.data);
+        setRecipeIngredients(recipeIngredientsResponse.data);
       } catch (error) {
-        setError('Erreur lors de la récupération des recettes');
+        setError('Erreur lors de la récupération des données');
       }
     };
 
-    fetchRecipes();
+    fetchData();
   }, []);
 
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
   };
 
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+    setCurrentPage(0); // Reset to first page after filter change
+  };
+
+  const handleIngredientChange = (e) => {
+    setSelectedIngredient(e.target.value);
+    setCurrentPage(0); // Reset to first page after filter change
+  };
+
+  // Memorize the filtered recipes to optimize performance
+  const filteredRecipes = useMemo(() => {
+    return recipes.filter(recipe => {
+      const matchesCategory = selectedCategory === '' || recipe.category_id === parseInt(selectedCategory); // Adjust if needed
+      const matchesIngredient = selectedIngredient === '' || recipeIngredients.some(ri => ri.recipe_id === recipe.id && ri.ingredient_id === parseInt(selectedIngredient));
+      return matchesCategory && matchesIngredient;
+    });
+  }, [recipes, recipeIngredients, selectedCategory, selectedIngredient]);
+
   const offset = currentPage * recipesPerPage;
-  const currentRecipes = recipes.slice(offset, offset + recipesPerPage);
-  const pageCount = Math.ceil(recipes.length / recipesPerPage);
+  const currentRecipes = filteredRecipes.slice(offset, offset + recipesPerPage);
+  const pageCount = Math.ceil(filteredRecipes.length / recipesPerPage);
 
   return (
     <>
@@ -68,24 +92,30 @@ const Recipes = () => {
       <div className='recipes'>
         <h2>Nos recettes</h2>
         <div className='filterSection'>
-          <RecipesFilter />
+          <label htmlFor="category">Catégorie :</label>
+          <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+            <option value="">Toutes</option>
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))}
+          </select>
+
+          <label htmlFor="ingredient">Ingrédient :</label>
+          <select id="ingredient" value={selectedIngredient} onChange={handleIngredientChange}>
+            <option value="">Tous</option>
+            {ingredients.map(ingredient => (
+              <option key={ingredient.id} value={ingredient.id}>{ingredient.name}</option>
+            ))}
+          </select>
         </div>
-        <h2>Page {currentPage}</h2>
+        <h2>Page {currentPage + 1}</h2> {/* Displaying 1-based index for page */}
         <div className='cardContainer'>
-          {/* {currentCards.map(card => (
-            <div className='card card_recipe' key={card.id}>{card.title}</div>
-          ))} */}
-
           {error && <p>{error}</p>}
-
           {currentRecipes.map((card, index) => (
             <CardRecipe 
                 key={index}
                 image={card.image}
                 title={card.title}
-                // icon_diet={card.icon_diet}
-                // icon_favorite={card.icon_favorite}
-                // background_color={card.background_color}
                 to={card.to}
                 id={card.id}
             />
@@ -104,27 +134,8 @@ const Recipes = () => {
             />
           </div>
         </div>
-        {/* <div className='pagination'>
-          {renderPageNumbers()}
-        </div> */}
-
-
-        {/* <div>
-
-            {error && <p>{error}</p>}
-          <ul>
-            {recipes.map((recipe) => (
-              <li key={recipe.id}>
-                <h2>{recipe.title}</h2>
-                <p>{recipe.description}</p>
-                <p>{recipe.instructions}</p>
-              </li>
-            ))}
-          </ul>
-        </div> */}
       </div>    
     </>
-
   );
 };
 

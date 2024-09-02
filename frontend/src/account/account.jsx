@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import RecipesManagement from './RecipesManagement/RecipesManagement';
 import UsersManagement from './UsersManagement/UsersManagement';
 import CategoriesManagement from './CategoriesManagement/CategoriesManagement';
+import './account.css';
 
 function Account({ isLoggedIn }) {
   isLoggedIn = true;
