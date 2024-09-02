@@ -60,18 +60,17 @@ const Recipes = () => {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
-    setCurrentPage(0); // Reset to first page after filter change
+    setCurrentPage(0);
   };
 
   const handleIngredientChange = (e) => {
     setSelectedIngredient(e.target.value);
-    setCurrentPage(0); // Reset to first page after filter change
+    setCurrentPage(0);
   };
 
-  // Memorize the filtered recipes to optimize performance
   const filteredRecipes = useMemo(() => {
     return recipes.filter(recipe => {
-      const matchesCategory = selectedCategory === '' || recipe.category_id === parseInt(selectedCategory); // Adjust if needed
+      const matchesCategory = selectedCategory === '' || recipe.category_id === parseInt(selectedCategory);
       const matchesIngredient = selectedIngredient === '' || recipeIngredients.some(ri => ri.recipe_id === recipe.id && ri.ingredient_id === parseInt(selectedIngredient));
       return matchesCategory && matchesIngredient;
     });

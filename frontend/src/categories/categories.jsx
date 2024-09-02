@@ -86,9 +86,6 @@ const Categories = () => {
             />
           </div>
         </div>
-        {/* <div className='pagination'>
-          {renderPageNumbers()}
-        </div> */}
       </div>
     </>
 

@@ -1,10 +1,9 @@
-// src/components/account/account.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import '../form_recipe.css';
 
 const UpdateRecipe = () => {
-  const { recipeId } = useParams(); // Récupère recipeId à partir des paramètres de l'URL
+  const { recipeId } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [instructions, setInstructions] = useState('');

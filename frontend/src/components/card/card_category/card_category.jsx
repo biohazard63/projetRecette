@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import '../../card/card.css';
 import './card_category.css';
 
 const CardCategory = ({ 
   // image, 
   title, id,
-  // background_color 
 }) => {
 
     const handleClick = () => {

@@ -9,7 +9,6 @@ const RecipesFilter = ({ onFilterChange }) => {
   const [selectedIngredient, setSelectedIngredient] = useState('');
 
   useEffect(() => {
-    // Fetch categories and ingredients from the API
     const fetchFilters = async () => {
       try {
         const categoriesResponse = await axios.get('http://127.0.0.1:8000/api/categories');

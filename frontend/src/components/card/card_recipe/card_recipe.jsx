@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../../card/card.css';
 import { Link } from 'react-router-dom';
 import './card_recipe.css';
 

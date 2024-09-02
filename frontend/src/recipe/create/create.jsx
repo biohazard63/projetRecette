@@ -39,13 +39,12 @@ const CreateRecipe = () => {
         description,
         instructions,
         ingredients,
-        user_id: sessionStorage.getItem('userId'), // Assuming user ID is stored in session storage
-        category_id: 1 // Replace with actual category ID
+        user_id: sessionStorage.getItem('userId'),
+        category_id: 1
       });
 
       if (response.status === 201) {
         setSuccess('Recette ajoutée !');
-        // You can redirect the user or perform other actions here
       } else {
         setError(response.data.message || 'Une erreur est survenue.');
       }

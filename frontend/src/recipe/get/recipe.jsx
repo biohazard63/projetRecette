@@ -10,7 +10,7 @@ const GetRecipe = () => {
   let first_letter = "V";
   let text = "oici les ingrédients pour la recette :";
 
-  const { id } = useParams(); // Assurez-vous que votre routeur passe l'ID de la recette
+  const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   const [error, setError] = useState('');
@@ -25,10 +25,9 @@ const GetRecipe = () => {
         const recipeData = response.data;
         setRecipe(recipeData);
         
-        const recipeIngredients = responseIngredients.data; // Supposons que les ingrédients sont dans la propriété 'data'
-        const allIngredients = responseIngredient.data; // Supposons que les ingrédients sont dans la propriété 'data'
+        const recipeIngredients = responseIngredients.data; 
+        const allIngredients = responseIngredient.data;
 
-        // Filtrer les ingrédients pour la recette actuelle
         const filteredIngredients = recipeIngredients
           .filter(ri => ri.recipe_id === parseInt(id))
           .map(ri => {
